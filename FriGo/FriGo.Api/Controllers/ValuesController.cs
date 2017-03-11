@@ -6,14 +6,13 @@ using System.Net.Http;
 using System.Web.Http;
 
 namespace FriGo.Api.Controllers
-{
-    [Authorize]
+{   
     public class ValuesController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         // GET api/values/5

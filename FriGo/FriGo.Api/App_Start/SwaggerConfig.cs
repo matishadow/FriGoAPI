@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Web.Http;
 using WebActivatorEx;
 using FriGo.Api;
@@ -11,7 +12,7 @@ namespace FriGo.Api
     {
         public static void Register()
         {
-            var thisAssembly = typeof(SwaggerConfig).Assembly;
+            Assembly thisAssembly = typeof(SwaggerConfig).Assembly;
 
             GlobalConfiguration.Configuration 
                 .EnableSwagger(c =>
