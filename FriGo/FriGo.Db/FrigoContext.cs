@@ -7,16 +7,23 @@ using System.Linq;
 using System.Reflection;
 using FriGo.Db.EntityConfigurations;
 using FriGo.Db.Models;
+using FriGo.Db.Models.Authentication;
 using FriGo.Db.Models.Ingredients;
 using FriGo.Interfaces.Dependencies;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FriGo.Db
 {
-    public class FrigoContext : DbContext, ISelfRequestDependency
+    public class FrigoContext : IdentityDbContext<ApplicationUser, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>, IDisposable, ISelfRequestDependency
     {
         public FrigoContext() : base("DefaultConnection")
         {
             Database.SetInitializer(new FrigoDbInitializer());
+        }
+
+        public static FrigoContext Create()
+        {
+            return new FrigoContext();
         }
 
         private IEnumerable<Type> GetEntityConfigurationTypes(Assembly assembly)
@@ -64,6 +71,6 @@ namespace FriGo.Db
             RegiterEntityConfigurationTypes(modelBuilder, configurationTypes, assembly, addMethod);
 
             base.OnModelCreating(modelBuilder);
-        }
+        }     
     }
 }

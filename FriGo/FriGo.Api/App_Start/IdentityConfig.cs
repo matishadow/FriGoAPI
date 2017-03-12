@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using FriGo.Db;
+using FriGo.Db.Models.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using FriGo.Api.Models;
 using Microsoft.Owin.Security.DataProtection;
 
 namespace FriGo.Api
@@ -20,7 +21,7 @@ namespace FriGo.Api
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<FrigoContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {

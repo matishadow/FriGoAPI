@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace FriGo.Api.Models
+namespace FriGo.Db.Models.Authentication
 {
     // Models used as parameters to AccountController actions.
 

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace FriGo.Api.Models
+namespace FriGo.Db.Models.Authentication
 {
     // Models returned by AccountController actions.
 

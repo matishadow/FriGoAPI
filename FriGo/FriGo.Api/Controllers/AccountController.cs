@@ -14,9 +14,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using FriGo.Api.Models;
 using FriGo.Api.Providers;
 using FriGo.Api.Results;
+using FriGo.Db.Models.Authentication;
 
 namespace FriGo.Api.Controllers
 {
@@ -25,7 +25,7 @@ namespace FriGo.Api.Controllers
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
-        private ApplicationUserManager _userManager;
+        private ApplicationUserManager userManager;
 
         public AccountController()
         {
@@ -40,8 +40,8 @@ namespace FriGo.Api.Controllers
 
         public ApplicationUserManager UserManager
         {
-            get { return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-            private set { _userManager = value; }
+            get { return userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            private set { userManager = value; }
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
@@ -329,10 +329,10 @@ namespace FriGo.Api.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _userManager != null)
+            if (disposing && userManager != null)
             {
-                _userManager.Dispose();
-                _userManager = null;
+                userManager.Dispose();
+                userManager = null;
             }
 
             base.Dispose(disposing);

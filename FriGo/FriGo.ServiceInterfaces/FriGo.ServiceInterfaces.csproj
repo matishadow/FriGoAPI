@@ -39,7 +39,9 @@
     <Compile Include="IIngredientQuantityService.cs" />
     <Compile Include="IIngredientService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FriGo.Db\FriGo.Db.csproj">
       <Project>{677656d1-a4e1-4236-a438-e74b3104d001}</Project>
