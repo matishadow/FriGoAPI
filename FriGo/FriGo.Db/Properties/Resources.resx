@@ -121,4 +121,10 @@
   <data name="IngredientList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\SeedLists\IngredientList.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="IngredientNameValidationMessage" xml:space="preserve">
+    <value>Nazwa składnika nie może przekraczać 100 znaków.</value>
+  </data>
+  <data name="IngredientQuantityValidationMessage" xml:space="preserve">
+    <value>Ilość musi być liczbą dodatnią.</value>
+  </data>
 </root>

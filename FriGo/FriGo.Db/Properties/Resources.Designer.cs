@@ -69,5 +69,23 @@ namespace FriGo.Db.Properties {
                 return ResourceManager.GetString("IngredientList", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nazwa składnika nie może przekraczać 100 znaków..
+        /// </summary>
+        internal static string IngredientNameValidationMessage {
+            get {
+                return ResourceManager.GetString("IngredientNameValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ilość musi być liczbą dodatnią..
+        /// </summary>
+        internal static string IngredientQuantityValidationMessage {
+            get {
+                return ResourceManager.GetString("IngredientQuantityValidationMessage", resourceCulture);
+            }
+        }
     }
 }
