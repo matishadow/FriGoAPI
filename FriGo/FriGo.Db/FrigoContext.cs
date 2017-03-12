@@ -16,7 +16,7 @@ namespace FriGo.Db
     {
         public FrigoContext() : base("DefaultConnection")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<FrigoContext>());
+            Database.SetInitializer(new FrigoDbInitializer());
         }
 
         private IEnumerable<Type> GetEntityConfigurationTypes(Assembly assembly)

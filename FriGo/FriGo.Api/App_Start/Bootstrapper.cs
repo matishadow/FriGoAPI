@@ -16,12 +16,13 @@ namespace FriGo.Api
     {        
         public static void Run()
         {
-            Assembly[] otherAssemblies = GetAssemblies();            
+            Assembly executingAssembly = Assembly.GetExecutingAssembly();
+            IEnumerable<Assembly> otherAssemblies = GetFriGoAssemblies();            
         
             var builder = new ContainerBuilder();
             HttpConfiguration config = GlobalConfiguration.Configuration;
 
-            builder.RegisterApiControllers(otherAssemblies.First());
+            builder.RegisterApiControllers(executingAssembly);
             builder.RegisterWebApiFilterProvider(config);
 
             RegisterTypes(otherAssemblies, builder);
@@ -30,16 +31,13 @@ namespace FriGo.Api
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }
 
-        private static Assembly[] GetAssemblies()
+        private static IEnumerable<Assembly> GetFriGoAssemblies()
         {
-            return new[]
-            {
-                Assembly.GetExecutingAssembly(),
+            List<Assembly> assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                .Where(assembly => assembly.FullName.StartsWith(Properties.Resources.AppName))
+                .ToList();
 
-                Assembly.GetAssembly(typeof(BaseService)),
-                Assembly.GetAssembly(typeof(Entity)),
-                Assembly.GetAssembly(typeof(UnitOfWork)),
-            };
+            return assemblies;
         }
 
         private static void RegisterTypes(IEnumerable<Assembly> assemblies, ContainerBuilder builder)
