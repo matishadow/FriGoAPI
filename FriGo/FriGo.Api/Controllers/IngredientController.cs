@@ -4,9 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FriGo.Api.DAL;
 using FriGo.Db.Models.Ingredients;
-using FriGo.Interfaces.ServiceInterfaces;
+using FriGo.ServiceInterfaces;
 
 namespace FriGo.Api.Controllers
 {

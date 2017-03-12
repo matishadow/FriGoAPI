@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FriGo.Interfaces.ServiceInterfaces
+namespace FriGo.ServiceInterfaces
 {
     public interface ICrudService<TEntity>
     {

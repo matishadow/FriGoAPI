@@ -5,15 +5,55 @@ using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using FriGo.Api.DAL;
-using FriGo.Core.Services;
+using FriGo.DAL;
 using FriGo.Db.Models;
 using FriGo.Interfaces.Dependencies;
+using FriGo.Services;
 
 namespace FriGo.Api
 {
     public class Bootstrapper
-    {
+    {        
+        public static void Run()
+        {
+            Assembly[] otherAssemblies = GetAssemblies();            
+        
+            var builder = new ContainerBuilder();
+            HttpConfiguration config = GlobalConfiguration.Configuration;
+
+            builder.RegisterApiControllers(otherAssemblies.First());
+            builder.RegisterWebApiFilterProvider(config);
+
+            RegisterTypes(otherAssemblies, builder);
+
+            IContainer container = builder.Build();
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+        }
+
+        private static Assembly[] GetAssemblies()
+        {
+            return new[]
+            {
+                Assembly.GetExecutingAssembly(),
+
+                Assembly.GetAssembly(typeof(BaseService)),
+                Assembly.GetAssembly(typeof(Entity)),
+                Assembly.GetAssembly(typeof(UnitOfWork)),
+            };
+        }
+
+        private static void RegisterTypes(IEnumerable<Assembly> assemblies, ContainerBuilder builder)
+        {
+            foreach (Assembly assembly in assemblies)
+            {
+                RegisterRequestDependencies(builder, assembly);
+                RegisterLifeTimeDependencies(builder, assembly);
+                RegisterSingleInstanceDependencies(builder, assembly);
+                RegisterMatchingLifeTimeDependency(builder, assembly);
+                RegisterSelfDependency(builder, assembly);
+            }
+        }
+
         private static void RegisterRequestDependencies(ContainerBuilder builder, Assembly assembly)
         {
             IEnumerable<Type> types = assembly.GetTypes().Where(t => typeof(IRequestDependency).IsAssignableFrom(t)).ToList();
@@ -47,36 +87,6 @@ namespace FriGo.Api
             IEnumerable<Type> types = assembly.GetTypes().Where(t => typeof(ISelfRequestDependency).IsAssignableFrom(t)).ToList();
 
             builder.RegisterTypes(types.ToArray()).AsSelf().InstancePerRequest();
-        }
-
-        public static void Run()
-        {
-            var otherAssemblies = new[]
-            {
-                Assembly.GetExecutingAssembly(),
-
-                Assembly.GetAssembly(typeof(BaseService)),
-                Assembly.GetAssembly(typeof(Entity))
-            };
-            
-        
-            var builder = new ContainerBuilder();
-            HttpConfiguration config = GlobalConfiguration.Configuration;
-
-            builder.RegisterApiControllers(otherAssemblies.First());
-            builder.RegisterWebApiFilterProvider(config);
-
-            foreach (Assembly assembly in otherAssemblies)
-            {
-                RegisterRequestDependencies(builder, assembly);
-                RegisterLifeTimeDependencies(builder, assembly);
-                RegisterSingleInstanceDependencies(builder, assembly);
-                RegisterMatchingLifeTimeDependency(builder, assembly);
-                RegisterSelfDependency(builder, assembly);
-            }
-
-            IContainer container = builder.Build();
-            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
         }        
     }
 }

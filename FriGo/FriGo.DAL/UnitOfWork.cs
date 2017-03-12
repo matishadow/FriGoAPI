@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using FriGo.Db;
-using FriGo.Interfaces.DAL;
 using FriGo.Interfaces.Dependencies;
 
-namespace FriGo.Api.DAL
+namespace FriGo.DAL
 {
     public class UnitOfWork : IDisposable, IUnitOfWork, IRequestDependency
     {

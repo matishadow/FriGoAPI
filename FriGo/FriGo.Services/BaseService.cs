@@ -1,6 +1,6 @@
-﻿using FriGo.Interfaces.DAL;
+﻿using FriGo.DAL;
 
-namespace FriGo.Core.Services
+namespace FriGo.Services
 {
     public class BaseService
     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD679956-2F13-4401-8144-55D0A7254C98}</ProjectGuid>
+    <ProjectGuid>{AE34CA1E-E500-41E4-8EA3-5DE7E3A57B11}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FriGo.Interfaces</RootNamespace>
-    <AssemblyName>FriGo.Interfaces</AssemblyName>
+    <RootNamespace>FriGo.Services</RootNamespace>
+    <AssemblyName>FriGo.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,13 +34,29 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dependencies\IDependency.cs" />
-    <Compile Include="Dependencies\ILifeTimeDependency.cs" />
-    <Compile Include="Dependencies\IMatchingLifeTimeDependency.cs" />
-    <Compile Include="Dependencies\IRequestDependency.cs" />
-    <Compile Include="Dependencies\ISelfRequestDependency.cs" />
-    <Compile Include="Dependencies\ISingleInstanceDependency.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="CrudService.cs" />
+    <Compile Include="IngredientQuantityService.cs" />
+    <Compile Include="IngredientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FriGo.DAL\FriGo.DAL.csproj">
+      <Project>{b6e7b2f0-5668-4778-a12c-200f5a58e6f7}</Project>
+      <Name>FriGo.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FriGo.Db\FriGo.Db.csproj">
+      <Project>{677656d1-a4e1-4236-a438-e74b3104d001}</Project>
+      <Name>FriGo.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FriGo.Interfaces\FriGo.Interfaces.csproj">
+      <Project>{cd679956-2f13-4401-8144-55d0a7254c98}</Project>
+      <Name>FriGo.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FriGo.ServiceInterfaces\FriGo.ServiceInterfaces.csproj">
+      <Project>{1140e30d-87f0-4be2-afae-45d1466fed0d}</Project>
+      <Name>FriGo.ServiceInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

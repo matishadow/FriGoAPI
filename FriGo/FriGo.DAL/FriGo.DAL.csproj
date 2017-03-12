@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE34CA1E-E500-41E4-8EA3-5DE7E3A57B11}</ProjectGuid>
+    <ProjectGuid>{B6E7B2F0-5668-4778-A12C-200F5A58E6F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FriGo.Core</RootNamespace>
-    <AssemblyName>FriGo.Core</AssemblyName>
+    <RootNamespace>FriGo.DAL</RootNamespace>
+    <AssemblyName>FriGo.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,21 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\BaseService.cs" />
-    <Compile Include="Services\CrudService.cs" />
-    <Compile Include="Services\IngredientQuantityService.cs" />
-    <Compile Include="Services\IngredientService.cs" />
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FriGo.Db\FriGo.Db.csproj">
@@ -52,9 +54,13 @@
       <Name>FriGo.Db</Name>
     </ProjectReference>
     <ProjectReference Include="..\FriGo.Interfaces\FriGo.Interfaces.csproj">
-      <Project>{1140e30d-87f0-4be2-afae-45d1466fed0d}</Project>
+      <Project>{cd679956-2f13-4401-8144-55d0a7254c98}</Project>
       <Name>FriGo.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

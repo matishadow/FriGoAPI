@@ -1,4 +1,4 @@
-﻿namespace FriGo.Interfaces.DAL
+﻿namespace FriGo.DAL
 {
     public interface IUnitOfWork
     {

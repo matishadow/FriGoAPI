@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FriGo.Db.Models.Ingredients;
 
-namespace FriGo.Interfaces.ServiceInterfaces
+namespace FriGo.ServiceInterfaces
 {
     public interface IIngredientService
     {

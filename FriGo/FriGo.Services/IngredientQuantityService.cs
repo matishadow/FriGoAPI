@@ -1,9 +1,9 @@
-﻿using FriGo.Db.Models.Ingredients;
-using FriGo.Interfaces.DAL;
+﻿using FriGo.DAL;
+using FriGo.Db.Models.Ingredients;
 using FriGo.Interfaces.Dependencies;
-using FriGo.Interfaces.ServiceInterfaces;
+using FriGo.ServiceInterfaces;
 
-namespace FriGo.Core.Services
+namespace FriGo.Services
 {
     public class IngredientQuantityService : CrudService<IngredientQuantity>, IIngredientQuantityService, IRequestDependency
     {

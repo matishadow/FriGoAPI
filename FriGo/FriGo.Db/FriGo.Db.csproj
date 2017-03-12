@@ -39,20 +39,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityConfigurations\IngredientQuantityConfiguration.cs" />
     <Compile Include="EntityConfigurations\IngredientConfiguration.cs" />
+    <Compile Include="FrigoContext.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Ingredients\Ingredient.cs" />
     <Compile Include="Models\Ingredients\IngredientQuantity.cs" />
@@ -61,6 +53,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FriGo.Interfaces\FriGo.Interfaces.csproj">
+      <Project>{cd679956-2f13-4401-8144-55d0a7254c98}</Project>
+      <Name>FriGo.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
