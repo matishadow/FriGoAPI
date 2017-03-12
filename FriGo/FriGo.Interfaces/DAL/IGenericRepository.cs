@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace FriGo.Db.DAL
+namespace FriGo.Interfaces.DAL
 {
     public interface IGenericRepository<T>
     {

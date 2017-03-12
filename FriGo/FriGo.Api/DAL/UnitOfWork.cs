@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FriGo.Db;
+using FriGo.Interfaces.DAL;
+using FriGo.Interfaces.Dependencies;
 
-namespace FriGo.Db.DAL
+namespace FriGo.Api.DAL
 {
-    public class UnitOfWork : IDisposable, IUnitOfWork
+    public class UnitOfWork : IDisposable, IUnitOfWork, IRequestDependency
     {
         private readonly FrigoContext context;
-        private readonly Dictionary<Type, object> repositories;
+        private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
 
-        public UnitOfWork(FrigoContext context, Dictionary<Type, object> repositories)
+        public UnitOfWork(FrigoContext context)
         {
             this.context = context;
-            this.repositories = repositories;
         }
 
         public void Save()

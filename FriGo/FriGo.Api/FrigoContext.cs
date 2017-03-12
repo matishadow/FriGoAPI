@@ -1,13 +1,11 @@
+using System.Data.Entity;
 using FriGo.Db.EntityConfigurations;
 using FriGo.Db.Models.Ingredients;
+using FriGo.Interfaces.Dependencies;
 
-namespace FriGo.Db
+namespace FriGo.Api
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
-    public class FrigoContext : DbContext
+    public class FrigoContext : DbContext, ISelfRequestDependency
     {       
         public FrigoContext() : base("DefaultConnection")
         {

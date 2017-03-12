@@ -1,6 +1,4 @@
-﻿using FriGo.Db.Models.Ingredients;
-
-namespace FriGo.Db.DAL
+﻿namespace FriGo.Interfaces.DAL
 {
     public interface IUnitOfWork
     {

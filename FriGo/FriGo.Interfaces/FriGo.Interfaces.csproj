@@ -40,7 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\IGenericRepository.cs" />
+    <Compile Include="DAL\IUnitOfWork.cs" />
+    <Compile Include="Dependencies\IDependency.cs" />
+    <Compile Include="Dependencies\ISelfRequestDependency.cs" />
+    <Compile Include="Dependencies\ISingleInstanceDependency.cs" />
+    <Compile Include="Dependencies\IMatchingLifeTimeDependency.cs" />
+    <Compile Include="Dependencies\ILifeTimeDependency.cs" />
+    <Compile Include="Dependencies\IRequestDependency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceInterfaces\ICrudService.cs" />
+    <Compile Include="ServiceInterfaces\IIngredientQuantityService.cs" />
+    <Compile Include="ServiceInterfaces\IIngredientService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FriGo.Db\FriGo.Db.csproj">
+      <Project>{677656d1-a4e1-4236-a438-e74b3104d001}</Project>
+      <Name>FriGo.Db</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
