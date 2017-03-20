@@ -46,6 +46,7 @@ namespace FriGo.Api.Controllers
         /// Create new ingredient
         /// </summary>
         /// <param name="createIngredient"></param>
+        /// <returns>Created ingredient</returns>
         [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Ingredient created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
@@ -59,6 +60,7 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="editIngredient"></param>
+        /// <returns>Modified ingredient</returns>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Ingredient updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]

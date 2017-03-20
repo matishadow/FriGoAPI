@@ -40,6 +40,7 @@ namespace FriGo.Api.Controllers
         /// Create new type of unit
         /// </summary>
         /// <param name="createUnit"></param>
+        /// <returns>Created unit</returns>
         [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Unit created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
@@ -53,11 +54,12 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param name="editUnit"></param>
+        /// <returns>Modified unit</returns>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Unit updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
-        public virtual void Put(Guid id, EditUnit editUnit)
+        public virtual HttpResponseMessage Put(Guid id, EditUnit editUnit)
         {
             throw new NotImplementedException();
         }
@@ -70,7 +72,7 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
-        public virtual void Delete(Guid id)
+        public virtual HttpResponseMessage Delete(Guid id)
         {
             throw new NotImplementedException();
         }

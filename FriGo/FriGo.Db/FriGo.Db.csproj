@@ -72,11 +72,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\CreateUnit.cs" />
+    <Compile Include="DTO\Unit\CreateUnit.cs" />
     <Compile Include="DTO\Ingredient\CreateIngredient.cs" />
     <Compile Include="DTO\DtoEntity.cs" />
     <Compile Include="DTO\Ingredient\EditIngredient.cs" />
     <Compile Include="DTO\RecipeStub.cs" />
+    <Compile Include="DTO\Unit\EditUnit.cs" />
     <Compile Include="DTO\UserStub.cs" />
     <Compile Include="EntityConfigurations\IngredientQuantityConfiguration.cs" />
     <Compile Include="EntityConfigurations\IngredientConfiguration.cs" />
@@ -119,9 +120,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DTO\Unit\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
