@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using FriGo.Db.Models.Ingredients;
-using FriGo.Db.Models.Recipes;
+using FriGo.Db.Models.Ingredient;
 using FriGo.Db.Models.Social;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -12,7 +11,7 @@ namespace FriGo.Db.Models.Authentication
     public class User : IdentityUser
     {
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Recipe> Recipes { get; set; }
+        public virtual ICollection<Recipe.Recipe> Recipes { get; set; }
         public virtual ICollection<IngredientQuantity> IngredientQuantities { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)

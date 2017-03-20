@@ -1,5 +1,4 @@
 ﻿using FriGo.Db.Models.Authentication;
-using FriGo.Db.Models.Recipes;
 
 namespace FriGo.Db.Models.Social
 {
@@ -8,6 +7,6 @@ namespace FriGo.Db.Models.Social
         public string Text { get; set; }
 
         public virtual User User { get; set; }
-        public virtual Recipe Recipe { get; set; }
+        public virtual Recipe.Recipe Recipe { get; set; }
     }
 }

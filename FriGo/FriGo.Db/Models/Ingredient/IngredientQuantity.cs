@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation.Attributes;
-using FriGo.Db.Models.Social;
+﻿using FluentValidation.Attributes;
 using FriGo.Db.ModelValidators;
 
-namespace FriGo.Db.Models.Ingredients
+namespace FriGo.Db.Models.Ingredient
 {
     [Validator(typeof(IngredientQuantityValidator))]
     public class IngredientQuantity : Entity

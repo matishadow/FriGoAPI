@@ -1,6 +1,4 @@
-﻿using FriGo.Db.Models.Social;
-
-namespace FriGo.Db.Models.Recipes
+﻿namespace FriGo.Db.Models.Recipe
 {
     public class Tag : Entity
     {
