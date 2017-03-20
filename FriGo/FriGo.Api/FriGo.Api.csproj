@@ -238,6 +238,7 @@
     <Compile Include="Controllers\IngredientQuantityController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\RateController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\IngredientController.cs" />
     <Compile Include="Filters\ValidateModelStateFilter.cs" />

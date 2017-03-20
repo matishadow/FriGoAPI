@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,7 +17,12 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using FriGo.Api.Providers;
 using FriGo.Api.Results;
+using FriGo.Db.DTO;
+using FriGo.Db.DTO.Unit;
+using FriGo.Db.Models;
 using FriGo.Db.Models.Authentication;
+using FriGo.Db.Models.Ingredient;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
@@ -131,6 +137,21 @@ namespace FriGo.Api.Controllers
             IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
 
             return !result.Succeeded ? GetErrorResult(result) : Ok();
+        }
+
+        /// <summary>
+        /// Modify existing account
+        /// </summary>
+        /// <param name="editAccount"></param>
+        /// <returns>Modified unit</returns>
+        [Authorize]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Account updated")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public virtual HttpResponseMessage Put(EditAccount editAccount)
+        {
+            throw new NotImplementedException();
         }
 
         // POST api/Account/AddExternalLogin
@@ -280,9 +301,7 @@ namespace FriGo.Api.Controllers
             }).ToList();
         }
 
-        // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
