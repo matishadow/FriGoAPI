@@ -72,6 +72,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\IngredientQuantity\CreateIngredientQuantity.cs" />
+    <Compile Include="DTO\IngredientQuantity\EditIngredientQuantity.cs" />
+    <Compile Include="DTO\Recipe\CreateRecipe.cs" />
     <Compile Include="DTO\Unit\CreateUnit.cs" />
     <Compile Include="DTO\Ingredient\CreateIngredient.cs" />
     <Compile Include="DTO\DtoEntity.cs" />
