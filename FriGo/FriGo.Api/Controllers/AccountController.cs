@@ -18,6 +18,7 @@ using Microsoft.Owin.Security.OAuth;
 using FriGo.Api.Providers;
 using FriGo.Api.Results;
 using FriGo.Db.DTO;
+using FriGo.Db.DTO.Account;
 using FriGo.Db.DTO.Unit;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Authentication;

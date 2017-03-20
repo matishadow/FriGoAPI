@@ -19,7 +19,7 @@ namespace FriGo.Db.Models.Recipe
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<Ingredient.Ingredient> Ingredients { get; set; }
+        public virtual ICollection<Ingredient.IngredientQuantity> IngredientQuantities { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
     }

@@ -72,17 +72,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Account\EditAccount.cs" />
     <Compile Include="DTO\IngredientQuantity\CreateIngredientQuantity.cs" />
     <Compile Include="DTO\IngredientQuantity\EditIngredientQuantity.cs" />
     <Compile Include="DTO\Recipe\CreateRecipe.cs" />
     <Compile Include="DTO\Recipe\RateRecipe.cs" />
+    <Compile Include="DTO\Recipe\RecipeDto.cs" />
     <Compile Include="DTO\Unit\CreateUnit.cs" />
     <Compile Include="DTO\Ingredient\CreateIngredient.cs" />
     <Compile Include="DTO\DtoEntity.cs" />
     <Compile Include="DTO\Ingredient\EditIngredient.cs" />
-    <Compile Include="DTO\RecipeStub.cs" />
+    <Compile Include="DTO\Recipe\RecipeStub.cs" />
     <Compile Include="DTO\Unit\EditUnit.cs" />
-    <Compile Include="DTO\UserStub.cs" />
+    <Compile Include="DTO\Account\UserStub.cs" />
     <Compile Include="EntityConfigurations\IngredientQuantityConfiguration.cs" />
     <Compile Include="EntityConfigurations\IngredientConfiguration.cs" />
     <Compile Include="FrigoContext.cs" />

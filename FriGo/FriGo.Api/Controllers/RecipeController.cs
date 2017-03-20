@@ -20,7 +20,7 @@ namespace FriGo.Api.Controllers
         /// Returns all recipes
         /// </summary>
         /// <returns>An array of units</returns>
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Recipe>))]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<RecipeDto>))]
         public virtual HttpResponseMessage Get()
         {
             throw new NotImplementedException();
@@ -31,7 +31,7 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>One type of unit</returns>
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Recipe))]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
         public virtual HttpResponseMessage Get(Guid id)
         {
             throw new NotImplementedException();
@@ -44,7 +44,7 @@ namespace FriGo.Api.Controllers
         /// <param name="createRecipe"></param>
         /// <returns>Created unit</returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Recipe created")]
+        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(RecipeDto), Description = "Recipe created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
         public virtual HttpResponseMessage Post(Guid id, CreateRecipe createRecipe)

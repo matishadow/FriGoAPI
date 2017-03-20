@@ -1,4 +1,4 @@
-﻿namespace FriGo.Db.DTO
+﻿namespace FriGo.Db.DTO.Account
 {
     public class EditAccount
     {
