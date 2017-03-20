@@ -79,9 +79,15 @@
     <Compile Include="Models\Authentication\AccountBindingModels.cs" />
     <Compile Include="Models\Authentication\AccountViewModels.cs" />
     <Compile Include="Models\Authentication\ApplicationUser.cs" />
-    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Social\Entity.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Ingredients\Ingredient.cs" />
     <Compile Include="Models\Ingredients\IngredientQuantity.cs" />
+    <Compile Include="Models\Ingredients\Unit.cs" />
+    <Compile Include="Models\Recipes\Recipe.cs" />
+    <Compile Include="Models\Recipes\Tag.cs" />
+    <Compile Include="Models\Social\User.cs" />
     <Compile Include="ModelValidators\IngredientQuantityValidator.cs" />
     <Compile Include="ModelValidators\IngredientValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
