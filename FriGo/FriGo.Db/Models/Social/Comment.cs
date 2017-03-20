@@ -1,4 +1,5 @@
-﻿using FriGo.Db.Models.Recipes;
+﻿using FriGo.Db.Models.Authentication;
+using FriGo.Db.Models.Recipes;
 
 namespace FriGo.Db.Models.Social
 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FriGo.Db.Models.Authentication;
 using FriGo.Db.Models.Ingredients;
 using FriGo.Db.Models.Social;
 

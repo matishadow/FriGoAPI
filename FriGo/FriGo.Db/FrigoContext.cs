@@ -15,7 +15,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FriGo.Db
 {
-    public class FrigoContext : IdentityDbContext<ApplicationUser, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>, IDisposable, ISelfRequestDependency
+    public class FrigoContext : IdentityDbContext<User, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>, ISelfRequestDependency
     {
         public FrigoContext() : base("DefaultConnection")
         {
