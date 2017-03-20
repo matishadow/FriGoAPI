@@ -282,3 +282,4 @@ __pycache__/
 # !tools/packages.config
 
 # End of https://www.gitignore.io/api/visualstudio
+FriGo/FriGo\.Api/Web\.config
