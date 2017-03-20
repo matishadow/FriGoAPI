@@ -22,11 +22,11 @@ namespace FriGo.Api.Controllers
         }
 
         /// <summary>
-        /// Returns all ingredients with quantities
+        /// Returns user's ingredients with quantities
         /// </summary>
         /// <returns>An array of all ingredients with quantities</returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<IngredientQuantity>), Description = "Return ingredients in user\'s fridge")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<IngredientQuantity>), Description = "Returns ingredients in user\'s fridge")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         public HttpResponseMessage Get()

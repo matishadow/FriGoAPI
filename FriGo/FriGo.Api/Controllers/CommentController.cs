@@ -9,6 +9,7 @@ using FriGo.Db.DTO.Social;
 using FriGo.Db.DTO.Unit;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Social;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 
@@ -35,7 +36,7 @@ namespace FriGo.Api.Controllers
         /// <param name="editComment"></param>
         /// <returns></returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(decimal), Description = "Comment updated")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(CommentDto), Description = "Comment updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
@@ -51,7 +52,7 @@ namespace FriGo.Api.Controllers
         /// <param name="createComment"></param>
         /// <returns></returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(decimal), Description = "Comment created")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(CommentDto), Description = "Comment created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
         public virtual HttpResponseMessage Post(Guid recipeId, CreateComment createComment)

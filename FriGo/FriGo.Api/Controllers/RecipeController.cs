@@ -48,7 +48,7 @@ namespace FriGo.Api.Controllers
         }
 
         /// <summary>
-        /// Create new type of unit
+        /// Create new recipe
         /// </summary>
         /// <param name="id"></param>
         /// <param name="createRecipe"></param>

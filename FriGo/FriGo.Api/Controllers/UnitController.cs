@@ -41,7 +41,7 @@ namespace FriGo.Api.Controllers
         /// <param name="createUnit"></param>
         /// <returns>Created unit</returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Unit created")]
+        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Unit), Description = "Unit created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
         public virtual HttpResponseMessage Post(CreateUnit createUnit)
@@ -56,7 +56,7 @@ namespace FriGo.Api.Controllers
         /// <param name="editUnit"></param>
         /// <returns>Modified unit</returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Unit updated")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Unit), Description = "Unit updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
