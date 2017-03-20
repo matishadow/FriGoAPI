@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FriGo.Db.DTO.Ingredient;
+using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredients;
 using FriGo.ServiceInterfaces;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
@@ -18,26 +20,62 @@ namespace FriGo.Api.Controllers
             this.ingredientService = ingredientService;
         }
 
-        public virtual IEnumerable<Ingredient> Get()
+        /// <summary>
+        /// Returns all ingredients
+        /// </summary>
+        /// <returns>An array of ingredients</returns>
+        /// <response code="200"></response>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Ingredient>))]
+        public virtual HttpResponseMessage Get()
         {
-            return ingredientService.Get();
+            return Request.CreateResponse(HttpStatusCode.OK, ingredientService.Get());
         }
 
-        public virtual Ingredient Get(Guid id)
+        /// <summary>
+        /// Get one ingredient by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>One ingredient</returns>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient))]
+        public virtual HttpResponseMessage Get(Guid id)
         {
-            return ingredientService.Get(id);
+            return Request.CreateResponse(HttpStatusCode.OK, ingredientService.Get(id));
         }
 
-        public virtual void Post(Ingredient ingredient)
+        /// <summary>
+        /// Create new ingredient
+        /// </summary>
+        /// <param name="createIngredient"></param>
+        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Ingredient created")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [Authorize]
+        public virtual HttpResponseMessage Post(CreateIngredient createIngredient)
         {
-            ingredientService.Add(ingredient);
+            throw new NotImplementedException();
         }
 
-        public virtual void Put(Ingredient ingredient)
+        /// <summary>
+        /// Modify existing ingredient
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="editIngredient"></param>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Ingredient updated")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public virtual void Put(Guid id, EditIngredient editIngredient)
         {
-            ingredientService.Edit(ingredient);
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Delete ingredient
+        /// </summary>
+        /// <param name="id"></param>
+        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Ingredient deleted")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
         public virtual void Delete(Guid id)
         {
             ingredientService.Delete(id);
