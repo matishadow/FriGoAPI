@@ -4,8 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FriGo.Db.DTO.IngredientQuantity;
+using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredient;
 using FriGo.ServiceInterfaces;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
@@ -18,29 +21,73 @@ namespace FriGo.Api.Controllers
             this.ingredientQuantityService = ingredientQuantityService;
         }
 
-        public IEnumerable<IngredientQuantity> Get()
+        /// <summary>
+        /// Returns all ingredients with quantities
+        /// </summary>
+        /// <returns>An array of all ingredients with quantities</returns>
+        [Authorize]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<IngredientQuantity>), Description = "Return ingredients in user\'s fridge")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        public HttpResponseMessage Get()
         {
-            return ingredientQuantityService.Get();
+            return Request.CreateResponse(HttpStatusCode.OK, ingredientQuantityService.Get());
         }
 
-        public IngredientQuantity Get(Guid id)
+        /// <summary>
+        /// Returns one ingredient with quantity by Id
+        /// </summary>
+        /// <param name="id"></param>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IngredientQuantity), Description = "Return an ingredient in user's fridge with specified id")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public HttpResponseMessage Get(Guid id)
         {
-            return ingredientQuantityService.Get(id);
+            return Request.CreateResponse(HttpStatusCode.OK, ingredientQuantityService.Get(id));
         }
 
-        public void Post(IngredientQuantity ingredientQuantity)
+        /// <summary>
+        /// Adds ingredient to user's fridge
+        /// </summary>
+        /// <param name="createIngredientQuantity"></param>
+        /// <returns>Created ingredient with quantity</returns>
+        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(IngredientQuantity), Description = "Ingredient quantity created")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [Authorize]
+        public HttpResponseMessage Post(CreateIngredientQuantity createIngredientQuantity)
         {
-            ingredientQuantityService.Add(ingredientQuantity);
+            throw new NotImplementedException();
         }
 
-        public void Put(IngredientQuantity ingredientQuantity)
+        /// <summary>
+        /// Modify existing ingredient quantity
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="editIngredientQuantity"></param>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IngredientQuantity), Description = "Ingredient quantity updated")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public HttpResponseMessage Put(Guid id, EditIngredientQuantity editIngredientQuantity)
         {
-            ingredientQuantityService.Edit(ingredientQuantity);
+            throw new NotImplementedException();
         }
 
-        public void Delete(Guid id)
+        /// <summary>
+        /// Delete ingredient quantity
+        /// </summary>
+        /// <param name="id"></param>
+        [Authorize]
+        [SwaggerResponse(HttpStatusCode.NoContent, Description = "Ingredient quantity deleted")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public HttpResponseMessage Delete(Guid id)
         {
             ingredientQuantityService.Delete(id);
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }

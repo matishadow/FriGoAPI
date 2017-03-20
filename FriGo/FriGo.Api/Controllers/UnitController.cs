@@ -18,7 +18,6 @@ namespace FriGo.Api.Controllers
         /// Returns all types of unit
         /// </summary>
         /// <returns>An array of units</returns>
-        /// <response code="200"></response>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Unit>))]
         public virtual HttpResponseMessage Get()
         {
@@ -41,6 +40,7 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="createUnit"></param>
         /// <returns>Created unit</returns>
+        [Authorize]
         [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Unit created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
@@ -55,6 +55,7 @@ namespace FriGo.Api.Controllers
         /// <param name="id"></param>
         /// <param name="editUnit"></param>
         /// <returns>Modified unit</returns>
+        [Authorize]
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Unit updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
@@ -68,6 +69,7 @@ namespace FriGo.Api.Controllers
         /// Delete type of unit
         /// </summary>
         /// <param name="id"></param>
+        [Authorize]
         [SwaggerResponse(HttpStatusCode.NoContent, Description = "Unit deleted")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]

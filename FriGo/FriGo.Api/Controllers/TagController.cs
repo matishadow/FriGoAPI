@@ -14,7 +14,6 @@ namespace FriGo.Api.Controllers
         /// Returns all tags
         /// </summary>
         /// <returns>An array of tags</returns>
-        /// <response code="200"></response>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Tag>))]
         public virtual HttpResponseMessage Get()
         {

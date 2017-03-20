@@ -24,7 +24,6 @@ namespace FriGo.Api.Controllers
         /// Returns all ingredients
         /// </summary>
         /// <returns>An array of ingredients</returns>
-        /// <response code="200"></response>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<Ingredient>))]
         public virtual HttpResponseMessage Get()
         {
@@ -65,7 +64,7 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
-        public virtual void Put(Guid id, EditIngredient editIngredient)
+        public virtual HttpResponseMessage Put(Guid id, EditIngredient editIngredient)
         {
             throw new NotImplementedException();
         }
@@ -78,9 +77,11 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
-        public virtual void Delete(Guid id)
+        public virtual HttpResponseMessage Delete(Guid id)
         {
             ingredientService.Delete(id);
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }
