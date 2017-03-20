@@ -68,5 +68,14 @@ namespace FriGo.Api.Properties {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}\bin\FriGo.Api.XML.
+        /// </summary>
+        internal static string XmlCommentsPath {
+            get {
+                return ResourceManager.GetString("XmlCommentsPath", resourceCulture);
+            }
+        }
     }
 }

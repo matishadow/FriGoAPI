@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace FriGo.Api
+﻿namespace FriGo.Api
 {
     public static class AutoMapperConfig
     {
