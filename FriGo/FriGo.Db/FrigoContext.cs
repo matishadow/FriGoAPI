@@ -8,13 +8,13 @@ using System.Reflection;
 using FriGo.Db.EntityConfigurations;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Authentication;
-using FriGo.Db.Models.Ingredients;
+using FriGo.Db.Models.Social;
 using FriGo.Interfaces.Dependencies;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FriGo.Db
 {
-    public class FrigoContext : IdentityDbContext<ApplicationUser, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>, IDisposable, ISelfRequestDependency
+    public class FrigoContext : IdentityDbContext<User, IdentityRole, string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>, ISelfRequestDependency
     {
         public FrigoContext() : base("DefaultConnection")
         {
