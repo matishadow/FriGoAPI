@@ -78,6 +78,10 @@
     <Compile Include="DTO\Recipe\CreateRecipe.cs" />
     <Compile Include="DTO\Recipe\RateRecipe.cs" />
     <Compile Include="DTO\Recipe\RecipeDto.cs" />
+    <Compile Include="DTO\Social\EditComment.cs" />
+    <Compile Include="DTO\Social\CreateComment.cs" />
+    <Compile Include="DTO\Social\CommentDto.cs" />
+    <Compile Include="DTO\Social\UserDto.cs" />
     <Compile Include="DTO\Unit\CreateUnit.cs" />
     <Compile Include="DTO\Ingredient\CreateIngredient.cs" />
     <Compile Include="DTO\DtoEntity.cs" />

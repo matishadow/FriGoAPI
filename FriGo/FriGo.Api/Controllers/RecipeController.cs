@@ -17,22 +17,32 @@ namespace FriGo.Api.Controllers
     public class RecipeController : ApiController
     {
         /// <summary>
-        /// Returns all recipes
-        /// </summary>
-        /// <returns>An array of units</returns>
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<RecipeDto>))]
-        public virtual HttpResponseMessage Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
         /// Get one recipe by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns>One type of unit</returns>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
         public virtual HttpResponseMessage Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get recipe by parameters
+        /// </summary>
+        /// <param name="page">Number of page</param>
+        /// <param name="perPage">Count per page</param>
+        /// <param name="nameSort">Apply sorting by name?</param>
+        /// <param name="nameSortOrder">Sorting by name order</param>
+        /// <param name="fitnessSort">Apply sorting by fitness?</param>
+        /// <param name="fitnessSortOrder">Sorting by fitness order</param>
+        /// <param name="nameSearchQuery">Search by name</param>
+        /// <param name="tagSearchQuery">Search by tags</param>
+        /// <returns></returns>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
+        public virtual HttpResponseMessage Get(int page = 0, int perPage = 10, bool nameSort = false,
+            int nameSortOrder = 0, bool fitnessSort = false,
+            int fitnessSortOrder = 0, string nameSearchQuery = null, string tagSearchQuery = null)
         {
             throw new NotImplementedException();
         }
