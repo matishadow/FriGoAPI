@@ -19,6 +19,8 @@ namespace FriGo.Api
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            AutoMapperConfig.RegisterMappings();
+
             Bootstrapper.Run();
         }
     }

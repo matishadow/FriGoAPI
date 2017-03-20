@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,7 +17,13 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using FriGo.Api.Providers;
 using FriGo.Api.Results;
+using FriGo.Db.DTO;
+using FriGo.Db.DTO.Account;
+using FriGo.Db.DTO.Unit;
+using FriGo.Db.Models;
 using FriGo.Db.Models.Authentication;
+using FriGo.Db.Models.Ingredient;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
@@ -133,6 +140,21 @@ namespace FriGo.Api.Controllers
             return !result.Succeeded ? GetErrorResult(result) : Ok();
         }
 
+        /// <summary>
+        /// Modify existing account
+        /// </summary>
+        /// <param name="editAccount"></param>
+        /// <returns>Modified unit</returns>
+        [Authorize]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Account updated")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
+        [Authorize]
+        public virtual HttpResponseMessage Put(EditAccount editAccount)
+        {
+            throw new NotImplementedException();
+        }
+
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
@@ -219,7 +241,7 @@ namespace FriGo.Api.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            User user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -280,9 +302,7 @@ namespace FriGo.Api.Controllers
             }).ToList();
         }
 
-        // POST api/Account/Register
         [AllowAnonymous]
-        [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -290,7 +310,7 @@ namespace FriGo.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() {UserName = model.Email, Email = model.Email};
+            var user = new User() {UserName = model.Email, Email = model.Email};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -314,7 +334,7 @@ namespace FriGo.Api.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser {UserName = model.Email, Email = model.Email};
+            var user = new User {UserName = model.Email, Email = model.Email};
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
