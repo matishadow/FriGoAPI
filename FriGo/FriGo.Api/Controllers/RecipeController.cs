@@ -32,17 +32,14 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="page">Number of page</param>
         /// <param name="perPage">Count per page</param>
-        /// <param name="nameSort">Apply sorting by name?</param>
-        /// <param name="nameSortOrder">Sorting by name order</param>
-        /// <param name="fitnessSort">Apply sorting by fitness?</param>
-        /// <param name="fitnessSortOrder">Sorting by fitness order</param>
+        /// <param name="sortField">Sorting by field</param>
+        /// <param name="descending">Sorting order</param>
         /// <param name="nameSearchQuery">Search by name</param>
         /// <param name="tagSearchQuery">Search by tags</param>
         /// <returns></returns>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
-        public virtual HttpResponseMessage Get(int page = 0, int perPage = 10, bool nameSort = false,
-            int nameSortOrder = 0, bool fitnessSort = false,
-            int fitnessSortOrder = 0, string nameSearchQuery = null, string tagSearchQuery = null)
+        public virtual HttpResponseMessage Get(int page = 0, int perPage = 10, string sortField = null,
+            bool descending = false, string nameSearchQuery = null, string tagSearchQuery = null)
         {
             throw new NotImplementedException();
         }
