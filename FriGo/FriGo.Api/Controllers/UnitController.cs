@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FriGo.Db.DTO.Units;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredients;
@@ -13,6 +14,10 @@ namespace FriGo.Api.Controllers
 {
     public class UnitController : BaseFriGoController
     {
+        public UnitController(IMapper autoMapper) : base(autoMapper)
+        {
+        }
+
         /// <summary>
         /// Returns all types of unit
         /// </summary>

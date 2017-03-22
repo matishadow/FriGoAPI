@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
 using FriGo.ServiceInterfaces;
@@ -12,6 +13,10 @@ namespace FriGo.Api.Controllers
 {
     public class RateController : BaseFriGoController
     {
+        public RateController(IMapper autoMapper) : base(autoMapper)
+        {
+        }
+
         /// <summary>
         /// Get rating of recipe
         /// </summary>

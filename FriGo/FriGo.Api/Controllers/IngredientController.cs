@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FriGo.Db.DTO.Ingredients;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredients;
@@ -15,7 +16,8 @@ namespace FriGo.Api.Controllers
     {
         private readonly IIngredientService ingredientService;
 
-        public IngredientController(IIngredientService ingredientService)
+
+        public IngredientController(IMapper autoMapper, IIngredientService ingredientService) : base(autoMapper)
         {
             this.ingredientService = ingredientService;
         }
@@ -48,10 +50,12 @@ namespace FriGo.Api.Controllers
         /// <returns>Created ingredient</returns>
         [SwaggerResponse(HttpStatusCode.Created, Type = typeof(Ingredient), Description = "Ingredient created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
-        [Authorize]
         public virtual HttpResponseMessage Post(CreateIngredient createIngredient)
         {
-            throw new NotImplementedException();
+            Ingredient ingredient = AutoMapper.Map<CreateIngredient, Ingredient>(createIngredient);
+            ingredientService.Add(ingredient);
+
+            return Request.CreateResponse(HttpStatusCode.Created, ingredient);
         }
 
         /// <summary>

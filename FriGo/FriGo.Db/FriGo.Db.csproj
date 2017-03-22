@@ -90,6 +90,7 @@
     <Compile Include="DTO\Recipes\RecipeStub.cs" />
     <Compile Include="DTO\Units\EditUnit.cs" />
     <Compile Include="DTO\Account\UserStub.cs" />
+    <Compile Include="EntityConfigurations\TagConfiguration.cs" />
     <Compile Include="EntityConfigurations\IngredientQuantityConfiguration.cs" />
     <Compile Include="EntityConfigurations\IngredientConfiguration.cs" />
     <Compile Include="FrigoContext.cs" />

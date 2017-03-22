@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using AutoMapper;
 using FriGo.DAL;
 using FriGo.Db.Models;
 using FriGo.Interfaces.Dependencies;
@@ -26,6 +27,8 @@ namespace FriGo.Api
             builder.RegisterWebApiFilterProvider(config);
 
             RegisterTypes(otherAssemblies, builder);
+
+            RegisterAutoMapper(builder);
 
             IContainer container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
@@ -85,6 +88,17 @@ namespace FriGo.Api
             IEnumerable<Type> types = assembly.GetTypes().Where(t => typeof(ISelfRequestDependency).IsAssignableFrom(t)).ToList();
 
             builder.RegisterTypes(types.ToArray()).AsSelf().InstancePerRequest();
-        }        
+        }
+
+        private static void RegisterAutoMapper(ContainerBuilder builder)
+        {
+            var mapperConfiguration = new MapperConfiguration(configuration =>
+            {
+                configuration.CreateMissingTypeMaps = true;
+            });
+            IMapper mapper = mapperConfiguration.CreateMapper();
+
+            builder.RegisterInstance(mapper).As<IMapper>();
+        }
     }
 }

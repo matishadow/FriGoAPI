@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FriGo.Db.DTO.IngredientQuantities;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Ingredients;
@@ -16,7 +17,9 @@ namespace FriGo.Api.Controllers
     {
         private readonly IIngredientQuantityService ingredientQuantityService;
 
-        public IngredientQuantityController(IIngredientQuantityService ingredientQuantityService)
+
+        public IngredientQuantityController(IMapper autoMapper, IIngredientQuantityService ingredientQuantityService)
+            : base(autoMapper)
         {
             this.ingredientQuantityService = ingredientQuantityService;
         }

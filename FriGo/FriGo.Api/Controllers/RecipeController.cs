@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Recipes;
@@ -13,6 +14,10 @@ namespace FriGo.Api.Controllers
 {
     public class RecipeController : BaseFriGoController
     {
+        public RecipeController(IMapper autoMapper) : base(autoMapper)
+        {
+        }
+
         /// <summary>
         /// Get one recipe by Id
         /// </summary>
