@@ -120,6 +120,9 @@
   <data name="AppName" xml:space="preserve">
     <value>FriGo</value>
   </data>
+  <data name="IngredientNotFoundMessage" xml:space="preserve">
+    <value>Ingredient was not found in our database.</value>
+  </data>
   <data name="XmlCommentsPath" xml:space="preserve">
     <value>{0}\bin\FriGo.Api.XML</value>
   </data>

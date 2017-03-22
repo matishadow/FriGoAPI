@@ -68,6 +68,7 @@ namespace FriGo.DAL
         public void Insert(T entity)
         {
             dbSet.Add(entity);
+            context.Entry(entity).State = EntityState.Added;
         }
 
         public void Delete(T entity)

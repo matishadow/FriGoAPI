@@ -70,6 +70,15 @@ namespace FriGo.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ingredient was not found in our database..
+        /// </summary>
+        internal static string IngredientNotFoundMessage {
+            get {
+                return ResourceManager.GetString("IngredientNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}\bin\FriGo.Api.XML.
         /// </summary>
         internal static string XmlCommentsPath {

@@ -135,7 +135,7 @@ namespace FriGo.Api
 
                         // Set this flag to omit schema property descriptions for any type properties decorated with the
                         // Obsolete attribute 
-                        //c.IgnoreObsoleteProperties();
+                        c.IgnoreObsoleteProperties();
 
                         // In accordance with the built in JsonSerializer, Swashbuckle will, by default, describe enums as integers.
                         // You can change the serializer behavior by configuring the StringToEnumConverter globally or for a given

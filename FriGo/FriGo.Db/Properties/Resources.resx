@@ -127,4 +127,7 @@
   <data name="IngredientQuantityValidationMessage" xml:space="preserve">
     <value>Ilość musi być liczbą dodatnią.</value>
   </data>
+  <data name="UnitList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\SeedLists\UnitList.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

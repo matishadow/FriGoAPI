@@ -87,5 +87,15 @@ namespace FriGo.Db.Properties {
                 return ResourceManager.GetString("IngredientQuantityValidationMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gram
+        ///mililitr.
+        /// </summary>
+        internal static string UnitList {
+            get {
+                return ResourceManager.GetString("UnitList", resourceCulture);
+            }
+        }
     }
 }
