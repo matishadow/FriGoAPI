@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FriGo.Db.DTO.Ingredient;
-using FriGo.Db.DTO.Recipe;
 using FriGo.Db.DTO.Social;
-using FriGo.Db.DTO.Unit;
 using FriGo.Db.Models;
-using FriGo.Db.Models.Ingredient;
 using FriGo.Db.Models.Social;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
-    public class CommentController : ApiController
+    public class CommentController : BaseFriGoController
     {
         /// <summary>
         /// Get comments of recipe
@@ -32,7 +28,7 @@ namespace FriGo.Api.Controllers
         /// <summary>
         /// Edit comment
         /// </summary>
-        /// <param name="recipeId"></param>
+        /// <param name="id"></param>
         /// <param name="editComment"></param>
         /// <returns></returns>
         [Authorize]
@@ -40,7 +36,7 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
-        public virtual HttpResponseMessage Put(Guid recipeId, EditComment editComment)
+        public virtual HttpResponseMessage Put(Guid id, EditComment editComment)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +48,7 @@ namespace FriGo.Api.Controllers
         /// <param name="createComment"></param>
         /// <returns></returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(CommentDto), Description = "Comment created")]
+        [SwaggerResponse(HttpStatusCode.Created, Type = typeof(CommentDto), Description = "Comment created")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [Authorize]
         public virtual HttpResponseMessage Post(Guid recipeId, CreateComment createComment)
@@ -65,6 +61,7 @@ namespace FriGo.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         [Authorize]
+        [SwaggerResponseRemoveDefaults]
         [SwaggerResponse(HttpStatusCode.NoContent, Description = "Comment deleted")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FriGo.Db.DTO.Recipe;
+using FriGo.Db.DTO.Recipes;
+using FriGo.Db.Models.Ingredients;
 using FriGo.Db.Models.Social;
 
 namespace FriGo.Db.DTO.Social
@@ -9,8 +10,8 @@ namespace FriGo.Db.DTO.Social
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<CommentStub> Comments { get; set; }
         public IEnumerable<RecipeStub> Recipes { get; set; }
-        public IEnumerable<Models.Ingredient.IngredientQuantity> IngredientQuantities { get; set; }
+        public IEnumerable<IngredientQuantity> IngredientQuantities { get; set; }
     }
 }

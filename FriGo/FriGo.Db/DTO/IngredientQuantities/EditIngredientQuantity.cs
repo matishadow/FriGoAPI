@@ -1,4 +1,4 @@
-﻿namespace FriGo.Db.DTO.IngredientQuantity
+﻿namespace FriGo.Db.DTO.IngredientQuantities
 {
     public class EditIngredientQuantity
     {

@@ -19,17 +19,16 @@ using FriGo.Api.Providers;
 using FriGo.Api.Results;
 using FriGo.Db.DTO;
 using FriGo.Db.DTO.Account;
-using FriGo.Db.DTO.Unit;
 using FriGo.Db.Models;
 using FriGo.Db.Models.Authentication;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseFriGoController 
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager userManager;

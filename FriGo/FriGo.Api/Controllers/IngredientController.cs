@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FriGo.Db.DTO.Ingredient;
+using FriGo.Db.DTO.Ingredients;
 using FriGo.Db.Models;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
-    public class IngredientController : ApiController
+    public class IngredientController : BaseFriGoController
     {
         private readonly IIngredientService ingredientService;
 

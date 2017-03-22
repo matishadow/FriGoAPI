@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FriGo.Db.DTO.Ingredient;
-using FriGo.Db.DTO.Recipe;
-using FriGo.Db.DTO.Unit;
+using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
-using FriGo.Db.Models.Ingredient;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
-    public class RateController : ApiController
+    public class RateController : BaseFriGoController
     {
         /// <summary>
         /// Get rating of recipe
@@ -25,7 +22,7 @@ namespace FriGo.Api.Controllers
         public virtual HttpResponseMessage Get(Guid recipeId)
         {
             throw new NotImplementedException();
-        }        
+        }
 
         /// <summary>
         /// Rate recipe
@@ -33,6 +30,7 @@ namespace FriGo.Api.Controllers
         /// <param name="recipeId"></param>
         /// <param name="rateRecipe"></param>
         /// <returns></returns>
+        [Route("api/Rate/{recipeId}")]
         [Authorize]
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(decimal), Description = "Rate")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]

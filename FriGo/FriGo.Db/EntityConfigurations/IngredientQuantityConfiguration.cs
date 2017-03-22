@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.Db.EntityConfigurations
 {

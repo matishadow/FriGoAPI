@@ -1,4 +1,4 @@
-﻿namespace FriGo.Db.DTO.Recipe
+﻿namespace FriGo.Db.DTO.Recipes
 {
     public class RecipeStub : DtoEntity
     {

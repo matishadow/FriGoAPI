@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.Db
 {

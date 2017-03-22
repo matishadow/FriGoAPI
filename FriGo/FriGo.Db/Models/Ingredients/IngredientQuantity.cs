@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Attributes;
 using FriGo.Db.ModelValidators;
 
-namespace FriGo.Db.Models.Ingredient
+namespace FriGo.Db.Models.Ingredients
 {
     [Validator(typeof(IngredientQuantityValidator))]
     public class IngredientQuantity : Entity

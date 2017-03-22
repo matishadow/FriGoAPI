@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace FriGo.Db.DTO.Ingredient
+namespace FriGo.Db.DTO.Ingredients
 {
-    public class EditIngredient
+    public class CreateIngredient
     {
         public Guid UnitId { get; set; }
         public string Name { get; set; }

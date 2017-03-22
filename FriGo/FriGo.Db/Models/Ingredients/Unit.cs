@@ -1,4 +1,4 @@
-﻿namespace FriGo.Db.Models.Ingredient
+﻿namespace FriGo.Db.Models.Ingredients
 {
     public class Unit : Entity
     {

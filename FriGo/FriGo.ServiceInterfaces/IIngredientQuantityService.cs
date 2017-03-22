@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.ServiceInterfaces
 {

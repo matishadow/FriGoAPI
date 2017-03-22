@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FriGo.Db.DTO.Ingredient;
-using FriGo.Db.DTO.Recipe;
-using FriGo.Db.DTO.Unit;
+using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
-using FriGo.Db.Models.Ingredient;
-using FriGo.Db.Models.Recipe;
+using FriGo.Db.Models.Recipes;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 
 namespace FriGo.Api.Controllers
 {
-    public class RecipeController : ApiController
+    public class RecipeController : BaseFriGoController
     {
         /// <summary>
         /// Get one recipe by Id
@@ -35,11 +32,11 @@ namespace FriGo.Api.Controllers
         /// <param name="sortField">Sorting by field</param>
         /// <param name="descending">Sorting order</param>
         /// <param name="nameSearchQuery">Search by name</param>
-        /// <param name="tagSearchQuery">Search by tags</param>
+        /// <param name="tagQuery">Search by tags</param>
         /// <returns></returns>
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
         public virtual HttpResponseMessage Get(int page = 0, int perPage = 10, string sortField = null,
-            bool descending = false, string nameSearchQuery = null, string tagSearchQuery = null)
+            bool descending = false, string nameSearchQuery = null, Tag[] tagQuery = null)
         {
             throw new NotImplementedException();
         }

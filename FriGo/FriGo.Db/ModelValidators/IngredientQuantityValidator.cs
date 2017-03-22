@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using FriGo.Db.Models.Ingredient;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.Db.ModelValidators
 {

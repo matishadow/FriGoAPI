@@ -1,4 +1,4 @@
-﻿namespace FriGo.Db.DTO.Unit
+﻿namespace FriGo.Db.DTO.Units
 {
     public class CreateUnit
     {

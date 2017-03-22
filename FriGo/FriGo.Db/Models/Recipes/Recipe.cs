@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using FriGo.Db.Models.Authentication;
+using FriGo.Db.Models.Ingredients;
 using FriGo.Db.Models.Social;
 
-namespace FriGo.Db.Models.Recipe
+namespace FriGo.Db.Models.Recipes
 {
     public class Recipe : Entity
     {
@@ -19,7 +20,7 @@ namespace FriGo.Db.Models.Recipe
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<Ingredient.IngredientQuantity> IngredientQuantities { get; set; }
+        public virtual ICollection<IngredientQuantity> IngredientQuantities { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
     }
