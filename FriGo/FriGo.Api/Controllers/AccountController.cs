@@ -28,7 +28,7 @@ namespace FriGo.Api.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : BaseFriGoController 
+    public class AccountController : ApiController 
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager userManager;
