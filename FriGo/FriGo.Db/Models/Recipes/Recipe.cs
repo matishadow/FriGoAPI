@@ -13,6 +13,7 @@ namespace FriGo.Db.Models.Recipes
             CreatedAt = DateTime.Now;
         }
 
+        public string Title { get; set; }
         public string Description { get; set; }
         public byte[] Picture { get; set; }
         public int Rating { get; set; }
