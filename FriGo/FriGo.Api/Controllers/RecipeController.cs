@@ -11,6 +11,7 @@ using FriGo.Db.Models.Recipes;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
 using System.Linq;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.Api.Controllers
 {
@@ -30,14 +31,14 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
         public virtual HttpResponseMessage Get(Guid id)
         {
-            Recipe recipeResult = recipeService.Get().FirstOrDefault(x => x.Id == id);
+            Recipe recipeResult = recipeService.Get(id);
             if (recipeResult != null)
             {
                 RecipeDto returnRecipe = AutoMapper.Map<Recipe, RecipeDto>(recipeResult);
                 return Request.CreateResponse(HttpStatusCode.OK, returnRecipe);
             }
             else
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Recipe {id} don not exist");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Recipe {id} do not exist");
         }
 
         /// <summary>
@@ -50,10 +51,14 @@ namespace FriGo.Api.Controllers
         /// <param name="nameSearchQuery">Search by name</param>
         /// <param name="tagQuery">Search by tags</param>
         /// <returns></returns>
+        
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
-        public virtual HttpResponseMessage Get(int page = 1, int perPage = 10, string sortField = null,
-            bool descending = false, string nameSearchQuery = null, Tag[] tagQuery = null)
+        public virtual HttpResponseMessage Get(Tag[] tagQuery, int page = 1, int perPage = 10, string sortField = null,
+            bool descending = false, string nameSearchQuery = null)
         {
+            if (IsEmpty(tagQuery))
+                tagQuery = TakeAllTags().ToArray();
+
             IEnumerable<Recipe> recipeResults = recipeService.Get()
                                                     .FilterByName(nameSearchQuery)
                                                     .FilterByTag(tagQuery)
@@ -68,7 +73,18 @@ namespace FriGo.Api.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.NoContent);
         }
+        private bool IsEmpty(Tag[] tagQuery)
+        {
+            return tagQuery.Count() > 0;
+        }
+        private ICollection<Tag> TakeAllTags()
+        {
+            throw new NotImplementedException();
+        }
         
+
+        
+
         /// <summary>
         /// Create new recipe
         /// </summary>
@@ -103,14 +119,10 @@ namespace FriGo.Api.Controllers
     {
         public static IEnumerable<Recipe> FilterByName(this IEnumerable<Recipe> recipes, string nameSearchQuery)
         {
-            try
-            {
+            if (nameSearchQuery != null)
                 return recipes.Where(x => x.Title.Contains(nameSearchQuery));
-            }
-            catch (ArgumentNullException)
-            {
+            else
                 return recipes;
-            }
         }
         public static IEnumerable<Recipe> FilterByTag(this IEnumerable<Recipe> recipes, Tag[] tags)
         {
@@ -137,16 +149,40 @@ namespace FriGo.Api.Controllers
                         return descending ? recipes.OrderByDescending(key) : recipes.OrderBy(key);
                     }
                 }
-                return recipes.OrderBy(x => x.Rating);
+                return recipes.OrderBy (x => x.Rating);
             }
             catch (ArgumentNullException)
             {
-                return new List<Recipe>();
+            }
+            catch (ArgumentException)
+            {
+                var checkProperty = typeof(Recipe).GetProperty(field,
+                      System.Reflection.BindingFlags.Instance |
+                      System.Reflection.BindingFlags.Public |
+                      System.Reflection.BindingFlags.NonPublic).PropertyType;
+
+
+                if (checkProperty == typeof(ICollection<Tag>))
+                    return SortByTags(recipes);
+                else if (checkProperty == typeof(ICollection<IngredientQuantity>))
+                    return SortByIngredients(recipes);              
             }
             catch (NullReferenceException)
             {
-                return recipes;
-            }   
+            }
+            return recipes ?? new List<Recipe>();
+        }
+
+        private static IEnumerable<Recipe> SortByIngredients(IEnumerable<Recipe> recipes)
+        {
+            //add filters for ingredients in fridge
+            //metoda do która wylicza wskaźnik produktów
+            throw new NotImplementedException();
+        }
+
+        private static IEnumerable<Recipe> SortByTags(IEnumerable<Recipe> recipes)
+        {
+            throw new NotImplementedException();
         }
     }
 }
