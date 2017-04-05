@@ -6,6 +6,7 @@ using System.Web.Http;
 using AutoMapper;
 using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
+using FriGo.Db.DTO;
 using FriGo.Db.Models.Recipes;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
@@ -31,7 +32,10 @@ namespace FriGo.Api.Controllers
         {
             Recipe recipeResult = recipeService.Get().FirstOrDefault(x => x.Id == id);
             if (recipeResult != null)
-                return Request.CreateResponse(HttpStatusCode.OK, recipeResult);
+            {
+                RecipeDto returnRecipe = AutoMapper.Map<Recipe, RecipeDto>(recipeResult);
+                return Request.CreateResponse(HttpStatusCode.OK, returnRecipe);
+            }
             else
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Recipe {id} don not exist");
         }
@@ -50,14 +54,17 @@ namespace FriGo.Api.Controllers
         public virtual HttpResponseMessage Get(int page = 1, int perPage = 10, string sortField = null,
             bool descending = false, string nameSearchQuery = null, Tag[] tagQuery = null)
         {
-            IEnumerable<Recipe> returnValue = recipeService.Get()
+            IEnumerable<Recipe> recipeResults = recipeService.Get()
                                                     .FilterByName(nameSearchQuery)
                                                     .FilterByTag(tagQuery)
                                                     .SortByField(sortField, descending)
                                                     .Skip((page - 1) * perPage).Take(perPage);
 
-            if (returnValue.Count() > 0)
-                return Request.CreateResponse(HttpStatusCode.OK, returnValue);
+            if (recipeResults.Count() > 0)
+            {
+                IEnumerable<RecipeDto> returnRecipes = AutoMapper.Map<IEnumerable<Recipe>, IEnumerable<RecipeDto>>(recipeResults);
+                return Request.CreateResponse(HttpStatusCode.OK, returnRecipes);
+            }
             else
                 return Request.CreateResponse(HttpStatusCode.NoContent);
         }
