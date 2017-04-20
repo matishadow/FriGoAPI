@@ -56,22 +56,26 @@ namespace FriGo.Api.Controllers
         public virtual HttpResponseMessage Get(Tag[] tagQuery, int page = 1, int perPage = 10, string sortField = null,
             bool descending = false, string nameSearchQuery = null)
         {
-            if (IsEmpty(tagQuery))
-                tagQuery = TakeAllTags().ToArray();
-
-            IEnumerable<Recipe> recipeResults = recipeService.Get()
-                                                    .FilterByName(nameSearchQuery)
-                                                    .FilterByTag(tagQuery)
-                                                    .SortByField(sortField, descending)
-                                                    .Skip((page - 1) * perPage).Take(perPage);
-
-            if (recipeResults.Count() > 0)
+            //if (IsEmpty(tagQuery))
+            //    tagQuery = TakeAllTags().ToArray();
+            if (recipeService.Engine.RawData != null)
             {
-                IEnumerable<RecipeDto> returnRecipes = AutoMapper.Map<IEnumerable<Recipe>, IEnumerable<RecipeDto>>(recipeResults);
-                return Request.CreateResponse(HttpStatusCode.OK, returnRecipes);
+                recipeService.Engine.FilterByName(nameSearchQuery);
+                recipeService.Engine.FilterByTag(tagQuery);
+                recipeService.Engine.SortByField(sortField, descending);
+
+                IEnumerable<Recipe> recipeResults = recipeService.Engine.ProcessedRecipes
+                                                        .Skip((page - 1) * perPage).Take(perPage);
+
+                if (recipeResults.Count() > 0)
+                {
+                    IEnumerable<RecipeDto> returnRecipes = AutoMapper.Map<IEnumerable<Recipe>, IEnumerable<RecipeDto>>(recipeResults);
+                    return Request.CreateResponse(HttpStatusCode.OK, returnRecipes);
+                }
+                else
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
             }
-            else
-                return Request.CreateResponse(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
         private bool IsEmpty(Tag[] tagQuery)
         {
@@ -115,74 +119,4 @@ namespace FriGo.Api.Controllers
         }
     }
 
-    internal static class EngineRecipeSearch
-    {
-        public static IEnumerable<Recipe> FilterByName(this IEnumerable<Recipe> recipes, string nameSearchQuery)
-        {
-            if (nameSearchQuery != null)
-                return recipes.Where(x => x.Title.Contains(nameSearchQuery));
-            else
-                return recipes;
-        }
-        public static IEnumerable<Recipe> FilterByTag(this IEnumerable<Recipe> recipes, Tag[] tags)
-        {
-            try
-            {
-                return recipes.Where(x => x.Tags.Select(y => y.Name)
-                                     .Intersect(tags.Select(z => z.Name))
-                                     .Any());
-            }
-            catch (ArgumentNullException)
-            {
-                return recipes;
-            }   
-        }
-        public static IEnumerable<Recipe> SortByField(this IEnumerable<Recipe> recipes, string field, bool descending)
-        {
-            try
-            {
-                foreach (var Property in typeof(Recipe).GetType().GetProperties())
-                {
-                    if (field.ToLower() == Property.Name.ToLower())
-                    {
-                        Func<Recipe, object> key = x => Property.GetValue(x, null);
-                        return descending ? recipes.OrderByDescending(key) : recipes.OrderBy(key);
-                    }
-                }
-                return recipes.OrderBy (x => x.Rating);
-            }
-            catch (ArgumentNullException)
-            {
-            }
-            catch (ArgumentException)
-            {
-                var checkProperty = typeof(Recipe).GetProperty(field,
-                      System.Reflection.BindingFlags.Instance |
-                      System.Reflection.BindingFlags.Public |
-                      System.Reflection.BindingFlags.NonPublic).PropertyType;
-
-
-                if (checkProperty == typeof(ICollection<Tag>))
-                    return SortByTags(recipes);
-                else if (checkProperty == typeof(ICollection<IngredientQuantity>))
-                    return SortByIngredients(recipes);              
-            }
-            catch (NullReferenceException)
-            {
-            }
-            return recipes ?? new List<Recipe>();
-        }
-
-        private static IEnumerable<Recipe> SortByIngredients(IEnumerable<Recipe> recipes)
-        {
-            //add filters for ingredients in fridge
-            //metoda do która wylicza wskaźnik produktów
-            throw new NotImplementedException();
-        }
-
-        private static IEnumerable<Recipe> SortByTags(IEnumerable<Recipe> recipes)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }

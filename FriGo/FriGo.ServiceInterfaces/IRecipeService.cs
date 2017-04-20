@@ -6,6 +6,7 @@ namespace FriGo.ServiceInterfaces
 {
     public interface IRecipeService
     {
+         ISearchEngine Engine { get; set; }
          IEnumerable<Recipe> Get();
          Recipe Get(Guid id);
          void Add(Recipe recipe);
