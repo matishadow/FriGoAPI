@@ -6,16 +6,21 @@ using System.Web.Http;
 using AutoMapper;
 using FriGo.Db.DTO.Recipes;
 using FriGo.Db.Models;
+using FriGo.Db.DTO;
 using FriGo.Db.Models.Recipes;
 using FriGo.ServiceInterfaces;
 using Swashbuckle.Swagger.Annotations;
+using System.Linq;
+using FriGo.Db.Models.Ingredients;
 
 namespace FriGo.Api.Controllers
 {
     public class RecipeController : BaseFriGoController
     {
-        public RecipeController(IMapper autoMapper) : base(autoMapper)
+        private readonly IRecipeService recipeService;
+        public RecipeController(IMapper autoMapper, IRecipeService recipeService) : base(autoMapper)
         {
+            this.recipeService = recipeService;
         }
 
         /// <summary>
@@ -26,7 +31,14 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
         public virtual HttpResponseMessage Get(Guid id)
         {
-            throw new NotImplementedException();
+            Recipe recipeResult = recipeService.Get(id);
+            if (recipeResult != null)
+            {
+                RecipeDto returnRecipe = AutoMapper.Map<Recipe, RecipeDto>(recipeResult);
+                return Request.CreateResponse(HttpStatusCode.OK, returnRecipe);
+            }
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, $"Recipe {id} do not exist");
         }
 
         /// <summary>
@@ -39,12 +51,43 @@ namespace FriGo.Api.Controllers
         /// <param name="nameSearchQuery">Search by name</param>
         /// <param name="tagQuery">Search by tags</param>
         /// <returns></returns>
+        
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(RecipeDto))]
-        public virtual HttpResponseMessage Get(int page = 0, int perPage = 10, string sortField = null,
-            bool descending = false, string nameSearchQuery = null, Tag[] tagQuery = null)
+        public virtual HttpResponseMessage Get(Tag[] tagQuery, int page = 1, int perPage = 10, string sortField = null,
+            bool descending = false, string nameSearchQuery = null)
+        {
+            //if (IsEmpty(tagQuery))
+            //    tagQuery = TakeAllTags().ToArray();
+            if (recipeService.Engine.RawData != null)
+            {
+                recipeService.Engine.FilterByName(nameSearchQuery);
+                recipeService.Engine.FilterByTag(tagQuery);
+                recipeService.Engine.SortByField(sortField, descending);
+
+                IEnumerable<Recipe> recipeResults = recipeService.Engine.ProcessedRecipes
+                                                        .Skip((page - 1) * perPage).Take(perPage);
+
+                if (recipeResults.Count() > 0)
+                {
+                    IEnumerable<RecipeDto> returnRecipes = AutoMapper.Map<IEnumerable<Recipe>, IEnumerable<RecipeDto>>(recipeResults);
+                    return Request.CreateResponse(HttpStatusCode.OK, returnRecipes);
+                }
+                else
+                    return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+        private bool IsEmpty(Tag[] tagQuery)
+        {
+            return tagQuery.Count() > 0;
+        }
+        private ICollection<Tag> TakeAllTags()
         {
             throw new NotImplementedException();
         }
+        
+
+        
 
         /// <summary>
         /// Create new recipe
@@ -75,4 +118,5 @@ namespace FriGo.Api.Controllers
             throw new NotImplementedException();
         }
     }
+
 }

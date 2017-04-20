@@ -6,7 +6,7 @@ namespace FriGo.Db.DTO.Recipes
 {
     public class CreateRecipe
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public IEnumerable<CreateIngredientQuantity> CreateIngredientQuantities { get; set; }
         public IEnumerable<Tag> Tags { get; set; }        
