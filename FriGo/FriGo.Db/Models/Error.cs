@@ -7,9 +7,9 @@ using FriGo.Db.Models.Social;
 
 namespace FriGo.Db.Models
 {
-    public class Error 
+    public class Error : Exception
     {
         public int Code { get; set; }
-        public string Message { get; set; }
+        public new string Message { get; set; }
     }
 }
