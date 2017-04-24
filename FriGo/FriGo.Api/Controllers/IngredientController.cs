@@ -31,18 +31,11 @@ namespace FriGo.Api.Controllers
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(IEnumerable<IngredientDto>))]
         public virtual HttpResponseMessage Get()
         {
-            try
-            {
-                IEnumerable<Ingredient> ingredients = ingredientService.Get();
-                IEnumerable<IngredientDto> ingredientDtos =
-                    AutoMapper.Map<IEnumerable<Ingredient>, IEnumerable<IngredientDto>>(ingredients);
+            IEnumerable<Ingredient> ingredients = ingredientService.Get();
+            IEnumerable<IngredientDto> ingredientDtos =
+                AutoMapper.Map<IEnumerable<Ingredient>, IEnumerable<IngredientDto>>(ingredients);
 
-                return Request.CreateResponse(HttpStatusCode.OK, ingredientDtos);
-            }
-            catch (Exception exception)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exception);
-            } 
+            return Request.CreateResponse(HttpStatusCode.OK, ingredientDtos);
         }
 
         /// <summary>
