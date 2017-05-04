@@ -15,17 +15,32 @@ namespace FriGo.Api.Filters
             {
                 post = new Operation
                 {
-                    tags = new List<string> { Properties.Resources.AccountEndpointName },
+                    tags = new List<string> {Properties.Resources.AccountEndpointName},
                     consumes = new List<string>
                     {
                         Properties.Resources.UrlEncodedContentType
                     },
                     responses = new Dictionary<string, Response>
                     {
-                        {((int)HttpStatusCode.OK).ToString(), new Response {schema = schemaRegistry.GetOrRegister(typeof(TokenResponse))}},
-                        {((int)HttpStatusCode.BadRequest).ToString(), new Response {schema = schemaRegistry.GetOrRegister(typeof(TokenErrorResponse))}}
+                        {
+                            ((int) HttpStatusCode.OK).ToString(),
+                            new Response
+                            {
+                                description = Properties.Resources.TokenGetString,
+                                schema = schemaRegistry.GetOrRegister(typeof(TokenResponse))
+                            }
+                        },
+                        {
+                            ((int) HttpStatusCode.BadRequest).ToString(),
+                            new Response
+                            {
+                                description = Properties.Resources.InvalidRequestString,
+                                schema = schemaRegistry.GetOrRegister(typeof(TokenErrorResponse))
+                            }
+                        }
                     },
-                    parameters = new List<Parameter> {
+                    parameters = new List<Parameter>
+                    {
                         new Parameter
                         {
                             type = typeof(string).Name,

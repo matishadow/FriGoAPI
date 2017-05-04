@@ -138,8 +138,14 @@
   <data name="IngredientNotFoundMessage" xml:space="preserve">
     <value>Ingredient was not found in our database.</value>
   </data>
+  <data name="InvalidRequestString" xml:space="preserve">
+    <value>Provided request was invalid</value>
+  </data>
   <data name="PasswordParameterName" xml:space="preserve">
     <value>password</value>
+  </data>
+  <data name="TokenGetString" xml:space="preserve">
+    <value>Token granted</value>
   </data>
   <data name="UrlEncodedContentType" xml:space="preserve">
     <value>application/x-www-form-urlencoded</value>

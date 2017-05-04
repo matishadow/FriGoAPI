@@ -124,11 +124,29 @@ namespace FriGo.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provided request was invalid.
+        /// </summary>
+        internal static string InvalidRequestString {
+            get {
+                return ResourceManager.GetString("InvalidRequestString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to password.
         /// </summary>
         internal static string PasswordParameterName {
             get {
                 return ResourceManager.GetString("PasswordParameterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Token granted.
+        /// </summary>
+        internal static string TokenGetString {
+            get {
+                return ResourceManager.GetString("TokenGetString", resourceCulture);
             }
         }
         
