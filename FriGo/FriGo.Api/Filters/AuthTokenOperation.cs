@@ -20,6 +20,7 @@ namespace FriGo.Api.Filters
                     {
                         Properties.Resources.UrlEncodedContentType
                     },
+                    summary = Properties.Resources.TokenEndpointDescription,
                     responses = new Dictionary<string, Response>
                     {
                         {

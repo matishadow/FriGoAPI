@@ -142,6 +142,15 @@ namespace FriGo.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get authorization token (bearer).
+        /// </summary>
+        internal static string TokenEndpointDescription {
+            get {
+                return ResourceManager.GetString("TokenEndpointDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Token granted.
         /// </summary>
         internal static string TokenGetString {
