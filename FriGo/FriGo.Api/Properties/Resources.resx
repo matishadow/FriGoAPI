@@ -117,11 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountEndpointName" xml:space="preserve">
+    <value>Account</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>FriGo</value>
   </data>
+  <data name="AuthTokenRoute" xml:space="preserve">
+    <value>/api/Account/Token</value>
+  </data>
+  <data name="FormDataParameterTypeName" xml:space="preserve">
+    <value>formData</value>
+  </data>
+  <data name="GrantTypeName" xml:space="preserve">
+    <value>grant_type</value>
+  </data>
+  <data name="GrantTypeParameterDescription" xml:space="preserve">
+    <value>preferably grant_type=password</value>
+  </data>
   <data name="IngredientNotFoundMessage" xml:space="preserve">
     <value>Ingredient was not found in our database.</value>
+  </data>
+  <data name="PasswordParameterName" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="UrlEncodedContentType" xml:space="preserve">
+    <value>application/x-www-form-urlencoded</value>
+  </data>
+  <data name="UsernameParameterName" xml:space="preserve">
+    <value>username</value>
   </data>
   <data name="XmlCommentsPath" xml:space="preserve">
     <value>{0}\bin\FriGo.Api.XML</value>

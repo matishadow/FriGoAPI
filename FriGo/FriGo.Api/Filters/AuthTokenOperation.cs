@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Web.Http.Description;
+using FriGo.Db.Models.Authentication;
 using Swashbuckle.Swagger;
 
 namespace FriGo.Api.Filters
@@ -8,36 +11,42 @@ namespace FriGo.Api.Filters
     {
         public void Apply(SwaggerDocument swaggerDoc, SchemaRegistry schemaRegistry, IApiExplorer apiExplorer)
         {
-            swaggerDoc.paths.Add("/api/Account/token", new PathItem
+            swaggerDoc.paths.Add(Properties.Resources.AuthTokenRoute, new PathItem
             {
                 post = new Operation
                 {
-                    tags = new List<string> { "Account" },
+                    tags = new List<string> { Properties.Resources.AccountEndpointName },
                     consumes = new List<string>
                     {
-                        "application/x-www-form-urlencoded"
+                        Properties.Resources.UrlEncodedContentType
+                    },
+                    responses = new Dictionary<string, Response>
+                    {
+                        {((int)HttpStatusCode.OK).ToString(), new Response {schema = schemaRegistry.GetOrRegister(typeof(TokenResponse))}},
+                        {((int)HttpStatusCode.BadRequest).ToString(), new Response {schema = schemaRegistry.GetOrRegister(typeof(TokenErrorResponse))}}
                     },
                     parameters = new List<Parameter> {
                         new Parameter
                         {
-                            type = "string",
-                            name = "grant_type",
+                            type = typeof(string).Name,
+                            name = Properties.Resources.GrantTypeName,
                             required = true,
-                            @in = "formData"
+                            @in = Properties.Resources.FormDataParameterTypeName,
+                            description = Properties.Resources.GrantTypeParameterDescription
                         },
                         new Parameter
                         {
-                            type = "string",
-                            name = "username",
+                            type = typeof(string).Name,
+                            name = Properties.Resources.UsernameParameterName,
                             required = false,
-                            @in = "formData"
+                            @in = Properties.Resources.FormDataParameterTypeName
                         },
                         new Parameter
                         {
-                            type = "string",
-                            name = "password",
+                            type = typeof(string).Name,
+                            name = Properties.Resources.PasswordParameterName,
                             required = false,
-                            @in = "formData"
+                            @in = Properties.Resources.FormDataParameterTypeName
                         }
                     }
                 }

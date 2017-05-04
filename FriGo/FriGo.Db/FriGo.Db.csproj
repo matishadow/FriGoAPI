@@ -102,6 +102,8 @@
     <Compile Include="FrigoDbInitializer.cs" />
     <Compile Include="Models\Authentication\AccountBindingModels.cs" />
     <Compile Include="Models\Authentication\AccountViewModels.cs" />
+    <Compile Include="Models\Authentication\TokenErrorResponse.cs" />
+    <Compile Include="Models\Authentication\TokenResponse.cs" />
     <Compile Include="Models\Authentication\User.cs" />
     <Compile Include="Models\Social\Comment.cs" />
     <Compile Include="Models\Entity.cs" />
