@@ -61,6 +61,15 @@ namespace FriGo.Db.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The new password and confirmation password do not match..
+        /// </summary>
+        internal static string ConfirmPasswordValidationMessage {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jajko
         ///Ryż.
         /// </summary>
@@ -85,6 +94,15 @@ namespace FriGo.Db.Properties {
         internal static string IngredientQuantityValidationMessage {
             get {
                 return ResourceManager.GetString("IngredientQuantityValidationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must be at least {0} characters long..
+        /// </summary>
+        internal static string PasswordLengthValidationMessage {
+            get {
+                return ResourceManager.GetString("PasswordLengthValidationMessage", resourceCulture);
             }
         }
         

@@ -61,6 +61,15 @@ namespace FriGo.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        internal static string AccountEndpointName {
+            get {
+                return ResourceManager.GetString("AccountEndpointName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FriGo.
         /// </summary>
         internal static string AppName {
@@ -70,11 +79,74 @@ namespace FriGo.Api.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /api/Account/Token.
+        /// </summary>
+        internal static string AuthTokenRoute {
+            get {
+                return ResourceManager.GetString("AuthTokenRoute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to formData.
+        /// </summary>
+        internal static string FormDataParameterTypeName {
+            get {
+                return ResourceManager.GetString("FormDataParameterTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to grant_type.
+        /// </summary>
+        internal static string GrantTypeName {
+            get {
+                return ResourceManager.GetString("GrantTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to preferably grant_type=password.
+        /// </summary>
+        internal static string GrantTypeParameterDescription {
+            get {
+                return ResourceManager.GetString("GrantTypeParameterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ingredient was not found in our database..
         /// </summary>
         internal static string IngredientNotFoundMessage {
             get {
                 return ResourceManager.GetString("IngredientNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        internal static string PasswordParameterName {
+            get {
+                return ResourceManager.GetString("PasswordParameterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to application/x-www-form-urlencoded.
+        /// </summary>
+        internal static string UrlEncodedContentType {
+            get {
+                return ResourceManager.GetString("UrlEncodedContentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        internal static string UsernameParameterName {
+            get {
+                return ResourceManager.GetString("UsernameParameterName", resourceCulture);
             }
         }
         
