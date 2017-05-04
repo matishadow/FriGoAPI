@@ -87,13 +87,14 @@
     <Compile Include="EntityConfigurations\IngredientConfiguration.cs" />
     <Compile Include="FrigoContext.cs" />
     <Compile Include="FrigoDbInitializer.cs" />
-    <Compile Include="Models\Authentication\AccountViewModels.cs" />
     <Compile Include="Models\Authentication\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\Authentication\RegisterBindingModel.cs" />
     <Compile Include="Models\Authentication\SetPasswordBindingModel.cs" />
     <Compile Include="Models\Authentication\TokenErrorResponse.cs" />
     <Compile Include="Models\Authentication\TokenResponse.cs" />
     <Compile Include="Models\Authentication\User.cs" />
+    <Compile Include="Models\Authentication\UserInfoViewModel.cs" />
+    <Compile Include="Models\Authentication\UserLoginInfoViewModel.cs" />
     <Compile Include="Models\Social\Comment.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Error.cs" />
@@ -102,8 +103,11 @@
     <Compile Include="Models\Ingredients\Unit.cs" />
     <Compile Include="Models\Recipes\Recipe.cs" />
     <Compile Include="Models\Recipes\Tag.cs" />
+    <Compile Include="ModelValidators\RegisterValidator.cs" />
     <Compile Include="ModelValidators\IngredientQuantityValidator.cs" />
     <Compile Include="ModelValidators\IngredientValidator.cs" />
+    <Compile Include="ModelValidators\ChangePasswordValidator.cs" />
+    <Compile Include="ModelValidators\SetPasswordValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

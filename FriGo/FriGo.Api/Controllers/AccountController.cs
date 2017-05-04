@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using System.Web.Http.Results;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -101,9 +102,9 @@ namespace FriGo.Api.Controllers
         /// Modify existing account
         /// </summary>
         /// <param name="editAccount"></param>
-        /// <returns>Modified unit</returns>
+        /// <returns>Modified User</returns>
         [Authorize]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(Ingredient), Description = "Account updated")]
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(UserController), Description = "Account updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
         [Authorize]
