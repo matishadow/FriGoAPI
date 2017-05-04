@@ -43,7 +43,7 @@ namespace FriGo.Api.Filters
                     {
                         new Parameter
                         {
-                            type = typeof(string).Name,
+                            type = typeof(string).Name.ToLower(),
                             name = Properties.Resources.GrantTypeName,
                             required = true,
                             @in = Properties.Resources.FormDataParameterTypeName,
@@ -51,14 +51,14 @@ namespace FriGo.Api.Filters
                         },
                         new Parameter
                         {
-                            type = typeof(string).Name,
+                            type = typeof(string).Name.ToLower(),
                             name = Properties.Resources.UsernameParameterName,
                             required = false,
                             @in = Properties.Resources.FormDataParameterTypeName
                         },
                         new Parameter
                         {
-                            type = typeof(string).Name,
+                            type = typeof(string).Name.ToLower(),
                             name = Properties.Resources.PasswordParameterName,
                             required = false,
                             @in = Properties.Resources.FormDataParameterTypeName
