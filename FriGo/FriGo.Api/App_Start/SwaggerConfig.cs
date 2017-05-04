@@ -4,6 +4,7 @@ using System.Web.Http;
 using System.Xml.XPath;
 using WebActivatorEx;
 using FriGo.Api;
+using FriGo.Api.Filters;
 using Swashbuckle.Application;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
@@ -176,6 +177,9 @@ namespace FriGo.Api
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
                         //
                         //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
+
+
+                        c.DocumentFilter<AuthTokenOperation>();
                     })
                 .EnableSwaggerUi(c =>
                     {
