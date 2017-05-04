@@ -39,11 +39,9 @@ namespace FriGo.Api.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        public AccountController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
         }
 
         public ApplicationUserManager UserManager
@@ -52,9 +50,12 @@ namespace FriGo.Api.Controllers
             private set { userManager = value; }
         }
 
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
-        // GET api/Account/UserInfo
+        /// <summary>
+        /// Gets information about current user
+        /// </summary>
+        /// <returns>Information about logged user</returns>
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(UserInfoViewModel))] 
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -69,7 +70,14 @@ namespace FriGo.Api.Controllers
             };
         }
 
-        // POST api/Account/ChangePassword
+        /// <summary>
+        /// Method used in order to change password of current user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [SwaggerResponse(HttpStatusCode.OK, Description = "Password changed")]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -84,26 +92,11 @@ namespace FriGo.Api.Controllers
             return !result.Succeeded ? GetErrorResult(result) : Ok();
         }
 
-        // POST api/Account/SetPassword
-        [Route("SetPassword")]
-        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
-
-            return !result.Succeeded ? GetErrorResult(result) : Ok();
-        }
-
         /// <summary>
         /// Modify existing account
         /// </summary>
         /// <param name="editAccount"></param>
         /// <returns>Modified User</returns>
-        [Authorize]
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(UserController), Description = "Account updated")]
         [SwaggerResponse(HttpStatusCode.Unauthorized, Type = typeof(Error), Description = "Forbidden")]
         [SwaggerResponse(HttpStatusCode.NotFound, Type = typeof(Error), Description = "Not found")]
