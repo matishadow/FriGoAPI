@@ -10,6 +10,7 @@ using Swashbuckle.Swagger.Annotations;
 namespace FriGo.Api.Controllers
 {
     [SwaggerResponseRemoveDefaults]
+    [Authorize]
     public abstract class BaseFriGoController : ApiController
     {
         protected readonly IMapper AutoMapper;
