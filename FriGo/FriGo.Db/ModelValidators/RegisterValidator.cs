@@ -23,7 +23,7 @@ namespace FriGo.Db.ModelValidators
                 .NotEmpty();
 
             RuleFor(register => register.ConfirmPassword)
-                .Matches(register => register.Password)
+                .Equal(register => register.Password)
                 .NotEmpty();
         }
     }

@@ -64,7 +64,7 @@ namespace FriGo.Api.Controllers
 
             return new UserInfoViewModel
             {
-                Email = User.Identity.GetUserName(),
+                Username = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin?.LoginProvider
             };
@@ -121,7 +121,7 @@ namespace FriGo.Api.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            var user = new User {UserName = model.Email, Email = model.Email};
+            var user = new User {UserName = model.Username, Email = model.Email};
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
