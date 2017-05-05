@@ -127,7 +127,7 @@ namespace FriGo.Api.Controllers
 
             return !result.Succeeded
                 ? Request.CreateErrorResponse(HttpStatusCode.InternalServerError, GetErrorResult(result).ToString())
-                : Request.CreateResponse(HttpStatusCode.OK, user);
+                : Request.CreateResponse(HttpStatusCode.Created);
         }
 
         protected override void Dispose(bool disposing)
